@@ -6,7 +6,7 @@ Este proyecto es una aplicación desarrollada en Kotlin utilizando Jetpack Compo
 
 ## Características
 
-- Interfaz de usuario moderna con Jetpack Compose
+- Interfaz de usuario con Jetpack Compose
 - Arquitectura MVVM
 - Navegación entre pantallas con Jetpack Navigation
 - Inyección de dependencias con Hilt
