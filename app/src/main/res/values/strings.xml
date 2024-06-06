@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">MeliTest</string>
+    <string name="characteristics">Caracteristicas</string>
+    <string name="not_found_products">No hemos encontrado productos</string>
+    <string name="with_description">con esta descripción</string>
+    <string name="try_other">Prueba con otra</string>
+    <string name="search">Buscar</string>
+    <string name="loading">Cargando</string>
+</resources>
