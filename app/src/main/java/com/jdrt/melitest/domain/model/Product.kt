@@ -1,5 +1,7 @@
 package com.jdrt.melitest.domain.model
 
+import com.google.gson.annotations.SerializedName
+
 data class Product (
     val id: String,
     val title: String,
@@ -7,5 +9,7 @@ data class Product (
     val thumbnail: String,
     val condition: String,
     val permalink: String,
-    val seller: Seller
+    @SerializedName("currency_id")
+    val currency: String,
+    val seller: Seller,
 )

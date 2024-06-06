@@ -1,18 +1,24 @@
 package com.jdrt.melitest.presentation.common
 
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Card
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
@@ -25,31 +31,39 @@ import com.jdrt.melitest.domain.model.Product
 import com.jdrt.melitest.domain.model.Seller
 import com.jdrt.melitest.util.Dimens
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProductCard(
     modifier: Modifier = Modifier,
     product: Product,
     onClick: () -> Unit
 ) {
-    Row (
-        modifier = modifier.clickable { onClick() },
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        ProductImage(product.thumbnail)
-        Column (
-            verticalArrangement = Arrangement.SpaceAround,
-            modifier = Modifier.padding(horizontal = Dimens.ExtraSmallPadding)
+    Card (
+        onClick = { onClick() },
+        modifier = modifier.fillMaxWidth().background(Color.Transparent)
+    ){
+        Row (
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(
-                text = product.title,
-                style = MaterialTheme.typography.bodyMedium,
-                maxLines = 2,
-                overflow = TextOverflow.Ellipsis
-            )
-            Text(
-                text = "$ ${product.price.toString()}",
-                style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Bold)
-            )
+            ProductImage(product.thumbnail)
+            Column (
+                verticalArrangement = Arrangement.SpaceAround,
+                modifier = Modifier.padding(horizontal = Dimens.MediumPadding).background(Color.Transparent)
+            ) {
+                Text(text = product.condition)
+                Spacer(modifier = Modifier.height(Dimens.MediumPadding))
+                Text(
+                    text = product.title,
+                    style = MaterialTheme.typography.bodyMedium,
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis
+                )
+                Spacer(modifier = Modifier.height(Dimens.MediumPadding))
+                Text(
+                    text = "$ ${product.price} ${product.currency}",
+                    style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Bold)
+                )
+            }
         }
     }
 }
@@ -79,7 +93,8 @@ fun ProductCardPreview() {
         condition = "New",
         thumbnail = "",
         permalink = "",
-        seller = Seller(id = 123, nickname = "123")
+        seller = Seller(id = 123, nickname = "123"),
+        currency = "ARG"
     )) {
 
     }
