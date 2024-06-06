@@ -8,6 +8,7 @@ import com.jdrt.melitest.data.ProductsPagingSource
 import com.jdrt.melitest.domain.model.Product
 import com.jdrt.melitest.domain.model.ProductDetail
 import com.jdrt.melitest.domain.repository.ProductRepository
+import com.jdrt.melitest.util.Constants
 import kotlinx.coroutines.flow.Flow
 
 class ProductRepositoryImpl(
@@ -15,7 +16,7 @@ class ProductRepositoryImpl(
 ): ProductRepository {
     override fun getProducts(q: String, limint: Int): Flow<PagingData<Product>> {
         return Pager(
-            config = PagingConfig(pageSize = 10),
+            config = PagingConfig(pageSize = Constants.PAGE_SIZE),
             pagingSourceFactory = {
                 ProductsPagingSource(
                     productsApi = productsApi,
