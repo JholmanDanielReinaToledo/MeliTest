@@ -10,14 +10,14 @@ class ProductsPagingSource(
 ): PagingSource<Int, Product>() {
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Product> {
         val page = params.key ?: 1
-        val offset = if (page == 1) 0 else page * 30
+        val offset = if (page == 1) 0 else (page - 1) * 30
         return try {
             val productsResponse = productsApi.getProducts(q = q, limit = 30, offset = offset)
             val products = productsResponse.results
             LoadResult.Page(
                 data = products,
                 prevKey = null,
-                nextKey = null,
+                nextKey = offset,
             )
         } catch (e: Exception) {
             e.printStackTrace()

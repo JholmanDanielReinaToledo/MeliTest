@@ -1,8 +1,8 @@
 package com.jdrt.melitest.di
 
 import com.jdrt.melitest.data.ProductsApi
-import com.jdrt.melitest.data.repository.ProductsRepositoryImpl
-import com.jdrt.melitest.domain.repository.ProductsRepository
+import com.jdrt.melitest.data.repository.ProductRepositoryImpl
+import com.jdrt.melitest.domain.repository.ProductRepository
 import com.jdrt.melitest.domain.usecases.products.GetProductDetail
 import com.jdrt.melitest.domain.usecases.products.GetProducts
 import com.jdrt.melitest.domain.usecases.products.ProductsUseCases
@@ -31,16 +31,16 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideProductsRepository(productsApi: ProductsApi): ProductsRepository = ProductsRepositoryImpl(productsApi)
+    fun provideProductsRepository(productsApi: ProductsApi): ProductRepository = ProductRepositoryImpl(productsApi)
 
     @Provides
     @Singleton
     fun provideProductsUseCases(
-        productsRepository: ProductsRepository
+        productRepository: ProductRepository
     ): ProductsUseCases {
         return ProductsUseCases(
-            getProducts = GetProducts(productsRepository),
-            getProductDetail = GetProductDetail(productsRepository)
+            getProducts = GetProducts(productRepository),
+            getProductDetail = GetProductDetail(productRepository)
         )
     }
 }

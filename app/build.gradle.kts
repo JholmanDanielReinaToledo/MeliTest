@@ -84,6 +84,8 @@ dependencies {
 
     implementation(libs.androidx.hilt.navigation.compose)
 
+    testImplementation(libs.mockk)
+    testImplementation(libs.org.amshove.kluent)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

@@ -5,7 +5,7 @@ import com.jdrt.melitest.domain.model.Product
 import com.jdrt.melitest.domain.model.ProductDetail
 import kotlinx.coroutines.flow.Flow
 
-interface ProductsRepository {
+interface ProductRepository {
     fun getProducts(q: String, limit: Int): Flow<PagingData<Product>>
     suspend fun getProductDetail(id: String): ProductDetail?
 }
